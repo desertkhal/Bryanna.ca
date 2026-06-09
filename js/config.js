@@ -7,6 +7,6 @@
    "anon" keys are designed. Row-level security protects data.)
    ============================================================ */
 window.MUSEUM_CONFIG = {
-  SUPABASE_URL: "PASTE_YOUR_PROJECT_URL_HERE",
-  SUPABASE_ANON_KEY: "PASTE_YOUR_ANON_KEY_HERE"
+  SUPABASE_URL: "https://yjraggzquqrhcnggxskj.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_08bmxv8IeEDn9e8c9VA6JA_q6-gQgZb"
 };
