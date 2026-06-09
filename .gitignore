@@ -2,3 +2,6 @@
 Thumbs.db
 node_modules/
 *.log
+
+# Staging area for raw photo/video dumps — never published
+_inbox/
