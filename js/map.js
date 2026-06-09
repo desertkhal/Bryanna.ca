@@ -1,34 +1,14 @@
-/* The Travel Wing: Leaflet map (free, no API key) + matching trip cards.
-   Reads window.TRIPS from data/trips.js. */
+/* The Travel Wing: Leaflet map (free, no API key).
+   Tapping a pin fills the detail panel BELOW the map with that trip's
+   blurb + photo gallery. Reads window.TRIPS. */
 (function () {
   function esc(s) {
     return String(s == null ? "" : s)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
   var TRIPS = window.TRIPS || [];
-
-  // ---- cards ----
-  var list = document.getElementById("trips");
-  if (list) {
-    if (!TRIPS.length) {
-      list.outerHTML = '<div class="placeholder">The passport is empty — ' +
-        'for now. The first expeditions will be logged here.</div>';
-    } else {
-      list.innerHTML = TRIPS.map(function (t, i) {
-        var art = t.file
-          ? '<div class="art"><img class="fade-img" loading="lazy" src="images/trips/' +
-            esc(t.file) + '" alt=""></div>' : "";
-        return '<article class="trip" id="trip-' + i + '">' + art +
-          '<div class="body"><div class="place">' + esc(t.place) + "</div>" +
-          (t.when ? '<div class="when">' + esc(t.when) + "</div>" : "") +
-          (t.story ? '<p class="story">' + esc(t.story) + "</p>" : "") +
-          "</div></article>";
-      }).join("");
-    }
-  }
-
-  // ---- map ----
   var mapEl = document.getElementById("map");
+  var detailEl = document.getElementById("trip-detail");
   if (!mapEl || typeof L === "undefined") return;
 
   var pts = TRIPS.filter(function (t) {
@@ -36,35 +16,67 @@
   });
 
   var map = L.map("map", { scrollWheelZoom: false });
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
     attribution: "&copy; OpenStreetMap &copy; CARTO",
     maxZoom: 19
   }).addTo(map);
 
-  if (!pts.length) {
-    map.setView([20, 0], 2);
-    return;
+  if (!pts.length) { map.setView([30, 0], 2); return; }
+
+  // a proper red map pin (teardrop), tip anchored to the coordinate
+  var PIN =
+    '<svg width="30" height="40" viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M12 0C5.37 0 0 5.37 0 12c0 8.4 12 20 12 20s12-11.6 12-20C24 5.37 18.63 0 12 0z" ' +
+        'fill="#cf2b2b" stroke="#ffffff" stroke-width="1.6"/>' +
+      '<circle cx="12" cy="12" r="4.4" fill="#ffffff"/>' +
+    '</svg>';
+
+  function renderDetail(t) {
+    if (!detailEl) return;
+    var photos = (t.photos && t.photos.length) ? t.photos : (t.file ? [t.file] : []);
+    var h = '<div class="td-head">';
+    h += '<h3 class="td-place">' + esc(t.place) + "</h3>";
+    if (t.when) h += '<div class="td-when">' + esc(t.when) + "</div>";
+    h += "</div>";
+    if (t.story) h += '<p class="td-story">' + esc(t.story) + "</p>";
+
+    if (photos.length) {
+      h += '<div class="td-gallery">' + photos.map(function (f) {
+        return '<a class="td-shot zoomable" href="images/trips/' + esc(f) + '">' +
+          '<img loading="lazy" src="images/trips/' + esc(f) + '" alt=""></a>';
+      }).join("") + "</div>";
+    } else if (!t.story) {
+      h += '<div class="td-empty">Field notes and photographs forthcoming.</div>';
+    }
+    detailEl.innerHTML = h;
   }
 
-  var brass = "#a8895a";
-  var markers = pts.map(function (t) {
-    var i = TRIPS.indexOf(t);
+  var markers = [];
+  function select(i, scroll) {
+    renderDetail(pts[i]);
+    markers.forEach(function (m, idx) {
+      var el = m.getElement();
+      if (el) el.classList.toggle("is-active", idx === i);
+    });
+    if (scroll && detailEl) {
+      detailEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
+  var bounds = [];
+  pts.forEach(function (t, i) {
     var icon = L.divIcon({
-      className: "",
-      html: '<div style="width:14px;height:14px;border-radius:50%;background:' + brass +
-        ';border:2.5px solid #fff;box-shadow:0 0 0 1px rgba(138,109,66,.55),0 2px 6px rgba(40,30,10,.45)"></div>',
-      iconSize: [14, 14], iconAnchor: [7, 7]
+      className: "museum-pin", html: PIN,
+      iconSize: [30, 40], iconAnchor: [15, 40]
     });
     var m = L.marker([t.lat, t.lng], { icon: icon }).addTo(map);
-    m.bindPopup("<b>" + esc(t.place) + "</b>" +
-      (t.when ? "<br>" + esc(t.when) : ""));
-    m.on("click", function () {
-      var card = document.getElementById("trip-" + i);
-      if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
-    return [t.lat, t.lng];
+    m.on("click", function () { select(i, true); });
+    markers.push(m);
+    bounds.push([t.lat, t.lng]);
   });
 
-  if (markers.length === 1) map.setView(markers[0], 6);
-  else map.fitBounds(markers, { padding: [40, 40] });
+  if (bounds.length === 1) map.setView(bounds[0], 6);
+  else map.fitBounds(bounds, { padding: [55, 55], maxZoom: 6 });
+
+  // nothing is shown below the map until the visitor taps a pin
 })();

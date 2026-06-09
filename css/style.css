@@ -198,15 +198,44 @@ section.wing { padding: 56px 0 72px; }
 /* ---------- travel ---------- */
 #map {
   position: relative;
-  height: 340px; width: 100%; border-radius: 10px; overflow: hidden;
-  border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 36px;
+  height: clamp(340px, 62svh, 600px); width: 100%;
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 0;
   background: #ece3d4; z-index: 1;
 }
-@media (min-width: 720px) { #map { height: 460px; } }
+/* on the travel page, tighten spacing so the whole map sits in view on arrival */
+body[data-page="voyage"] section.wing { padding-top: 32px; padding-bottom: 48px; }
+body[data-page="voyage"] .wing-head { margin-bottom: 24px; }
+
+/* red map pins */
+.museum-pin svg {
+  filter: drop-shadow(0 2px 3px rgba(40,20,10,.42));
+  transition: transform .15s ease; transform-origin: 50% 100%;
+}
+.museum-pin:hover svg { transform: scale(1.12); }
+.museum-pin.is-active svg { transform: scale(1.22); filter: drop-shadow(0 3px 5px rgba(40,20,10,.5)); }
+
+/* trip detail panel (below the map) */
+.trip-detail { max-width: 760px; margin: 30px auto 0; scroll-margin-top: 84px; }
+.trip-detail .td-head { border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 18px; }
+.trip-detail .td-place { font-family: var(--serif); font-size: 2rem; margin: 0; }
+.trip-detail .td-when { font-size: .76rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--brass-deep); font-weight: 600; margin-top: 5px; }
+.trip-detail .td-story { color: var(--ink-soft); margin: 0 0 22px; font-size: 1.06rem; line-height: 1.7; }
+.trip-detail .td-gallery { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 620px) { .trip-detail .td-gallery { grid-template-columns: repeat(3, 1fr); } }
+.trip-detail .td-shot { display: block; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow); }
+.trip-detail .td-shot img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover;
+  transition: transform .4s ease; }
+.trip-detail .td-shot:hover img { transform: scale(1.05); }
+.trip-detail .td-empty { color: var(--ink-soft); font-style: italic; font-family: var(--serif);
+  font-size: 1.15rem; text-align: center; padding: 22px; border: 1px dashed var(--line);
+  border-radius: 8px; background: var(--paper-2); }
 
 /* warm, aged-paper tint so the map reads as a museum artifact, not a plugin
    (only the map tiles are tinted; the brass markers stay crisp on top) */
-#map .leaflet-tile-pane { filter: sepia(0.42) saturate(0.92) brightness(1.05) contrast(0.92); }
+#map .leaflet-tile-pane { filter: saturate(1.06) brightness(1.02) sepia(0.10); }
 
 /* soft inner frame + vignette, like a framed exhibit */
 #map::after {
@@ -316,3 +345,33 @@ section.wing { padding: 56px 0 72px; }
 /* tasteful image fade-in */
 .fade-img { opacity: 0; transition: opacity .6s ease; }
 .fade-img.loaded { opacity: 1; }
+
+/* ---------- lightbox (elegant expanded photo view) ---------- */
+.zoomable { cursor: zoom-in; }
+.lightbox {
+  position: fixed; inset: 0; z-index: 1000; display: none;
+  align-items: center; justify-content: center; padding: 22px;
+  background: rgba(25,18,10,0);
+  -webkit-backdrop-filter: blur(0); backdrop-filter: blur(0);
+  transition: background .3s ease, backdrop-filter .3s ease, -webkit-backdrop-filter .3s ease;
+}
+.lightbox.open {
+  display: flex; background: rgba(25,18,10,0.82);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.lightbox .lb-img {
+  max-width: min(92vw, 1100px); max-height: 86vh; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+  transform: scale(.92); opacity: 0;
+  transition: transform .32s cubic-bezier(.2,.8,.2,1), opacity .28s ease;
+}
+.lightbox.open .lb-img { transform: scale(1); opacity: 1; }
+.lb-close {
+  position: fixed; top: 16px; right: 18px; width: 44px; height: 44px;
+  border-radius: 50%; border: 0; background: rgba(255,255,255,0.16); color: #fff;
+  font-size: 24px; line-height: 1; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background .2s, transform .15s;
+}
+.lb-close:hover { background: rgba(255,255,255,0.32); }
+.lb-close:active { transform: scale(.9); }
