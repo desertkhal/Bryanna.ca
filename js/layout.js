@@ -11,7 +11,7 @@
   ];
 
   var current = document.body.getAttribute("data-page") || "home";
-  var year = "MMXXIV"; // engraved est. year, edit in one place if needed
+  var year = "MMXXVI"; // engraved est. year, edit in one place if needed
 
   // ---- masthead ----
   var links = WINGS.map(function (w) {
