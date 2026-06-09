@@ -6,7 +6,7 @@
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
   function img(src, cls) {
-    return '<img class="' + cls + ' fade-img" loading="lazy" src="' + esc(src) + '" alt="">';
+    return '<img class="' + cls + '" loading="lazy" src="' + esc(src) + '" alt="">';
   }
 
   // ---- Portrait Gallery ----
@@ -19,7 +19,8 @@
     } else {
       g.innerHTML = P.map(function (p) {
         var art = p.file
-          ? img("images/portraits/" + p.file, "")
+          ? '<a class="zoomable" href="images/portraits/' + esc(p.file) + '">' +
+            img("images/portraits/" + p.file, "") + "</a>"
           : "";
         return '<figure class="frame"><div class="art">' + art + "</div>" +
           '<figcaption class="placard">' +
