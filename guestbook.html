@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Guestbook — Le Musée de Bryanna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="guestbook">
+  <div id="masthead"></div>
+
+  <section class="wing">
+    <div class="wrap">
+      <div class="wing-head">
+        <p class="eyebrow">Le Livre d'Or</p>
+        <h2>The Guestbook</h2>
+        <hr class="rule">
+        <p>Every visitor is asked to sign before they leave. Your name and a few words become a permanent part of the collection.</p>
+      </div>
+
+      <form id="gb-form" class="gb-form" autocomplete="off">
+        <label for="gb-name">Your name</label>
+        <input id="gb-name" name="name" type="text" maxlength="80" required>
+        <label for="gb-message">Your message</label>
+        <textarea id="gb-message" name="message" rows="3" maxlength="1000" required></textarea>
+        <p class="gb-note">Signed entries appear below for all to see, and the date is added for you.</p>
+        <span class="gb-hp" aria-hidden="true"><input type="text" name="website" tabindex="-1" autocomplete="off"></span>
+        <div style="text-align:center"><button class="btn solid" type="submit">Sign the Guestbook</button></div>
+        <p id="gb-status" class="gb-status"></p>
+      </form>
+
+      <div id="entries" class="entries"></div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+  <script src="js/layout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/guestbook.js"></script>
+</body>
+</html>
