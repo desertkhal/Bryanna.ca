@@ -41,7 +41,8 @@
     } else {
       t.innerHTML = E.map(function (e) {
         var photo = e.photo
-          ? '<div class="ephoto">' + img(e.photo, "") + "</div>" : "";
+          ? '<div class="ephoto"><a class="zoomable" href="' + esc(e.photo) + '">' +
+            img(e.photo, "") + "</a></div>" : "";
         return '<div class="event">' +
           '<div class="date">' + esc(e.date) + "</div>" +
           '<div class="et">' + esc(e.title) + "</div>" +

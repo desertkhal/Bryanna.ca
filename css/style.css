@@ -193,9 +193,10 @@ section.wing { padding: 56px 0 72px; }
   color: var(--brass-deep); font-weight: 600; }
 .event .et { font-family: var(--serif); font-size: 1.4rem; margin: 2px 0 6px; }
 .event .ed { color: var(--ink-soft); margin: 0; }
-.event .ephoto { margin-top: 12px; border-radius: 4px; overflow: hidden;
-  border: 1px solid var(--line); box-shadow: var(--shadow); }
-.event .ephoto img { aspect-ratio: 3/2; object-fit: cover; width: 100%; }
+.event .ephoto { margin-top: 14px; border-radius: 6px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow); max-width: 360px; }
+.event .ephoto a { display: block; cursor: zoom-in; }
+.event .ephoto img { width: 100%; height: auto; display: block; }
 
 /* ---------- travel ---------- */
 #map {
