@@ -82,11 +82,12 @@ section.wing { padding: 56px 0 72px; }
 .masthead .bar {
   max-width: var(--wrap); margin: 0 auto; padding: 12px 22px;
   display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px;
 }
 .brand {
   font-family: var(--serif); font-size: 1.25rem; font-weight: 600;
   color: var(--ink); text-decoration: none; letter-spacing: .3px;
-  display: flex; align-items: baseline; gap: .5ch;
+  display: flex; align-items: baseline; gap: .5ch; line-height: 1;
 }
 .brand .est { font-family: var(--sans); font-size: .62rem; letter-spacing: .2em;
   text-transform: uppercase; color: var(--brass-deep); }
@@ -98,20 +99,21 @@ section.wing { padding: 56px 0 72px; }
 }
 .nav-toggle svg { width: 20px; height: 20px; }
 
-.nav-links { display: none; }
+/* mobile: nav drops below the brand row as a full-width panel */
+.nav-links { display: none; flex-basis: 100%; }
 .nav-links a {
-  display: block; padding: 14px 22px; text-decoration: none;
+  display: block; padding: 14px 6px; text-decoration: none;
   color: var(--ink); border-top: 1px solid var(--line);
   font-size: .95rem; letter-spacing: .02em;
 }
 .nav-links a[aria-current="page"] { color: var(--brass-deep); }
-.nav-links.open { display: block; border-top: 1px solid var(--line); }
+.nav-links.open { display: block; }
 
-/* desktop nav */
+/* desktop: brand left, nav right, all on one aligned row */
 @media (min-width: 760px) {
   .nav-toggle { display: none; }
   .nav-links, .nav-links.open {
-    display: flex; gap: 4px; border: 0;
+    display: flex; align-items: center; gap: 4px; flex-basis: auto; border: 0;
   }
   .nav-links a {
     border: 0; padding: 8px 12px; border-radius: 8px; font-size: .9rem;
@@ -251,7 +253,6 @@ section.wing { padding: 56px 0 72px; }
 }
 .gb-form input:focus, .gb-form textarea:focus { outline: 2px solid var(--brass); border-color: transparent; }
 .gb-hp { position: absolute; left: -9999px; top: -9999px; } /* honeypot */
-.gb-note { font-size: .8rem; color: var(--ink-soft); margin: -6px 0 16px; }
 .gb-status { text-align: center; min-height: 1.4em; color: var(--brass-deep); font-size: .9rem; }
 
 .entries { display: grid; gap: 16px; max-width: 620px; margin: 0 auto; }

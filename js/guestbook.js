@@ -52,7 +52,7 @@
         }
         listEl.innerHTML = rows.map(function (r) {
           return '<div class="entry"><p class="msg">' + esc(r.message) + "</p>" +
-            '<div class="sig"><span class="name">' + esc(r.name) + "</span>" +
+            '<div class="sig"><span class="name">— ' + esc(r.name) + "</span>" +
             '<span class="date">' + fmtDate(r.created_at) + "</span></div></div>";
         }).join("");
       });
@@ -79,7 +79,7 @@
           if (btn) btn.disabled = false;
           if (res.error) { say("Something went wrong — please try again."); return; }
           form.reset();
-          say("Thank you for signing. ✦");
+          say("Thank you for signing. ♥");
           load();
         });
     });
