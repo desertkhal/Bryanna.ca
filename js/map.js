@@ -51,9 +51,9 @@
     var i = TRIPS.indexOf(t);
     var icon = L.divIcon({
       className: "",
-      html: '<div style="width:16px;height:16px;border-radius:50%;background:' +
-        brass + ';border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)"></div>',
-      iconSize: [16, 16], iconAnchor: [8, 8]
+      html: '<div style="width:14px;height:14px;border-radius:50%;background:' + brass +
+        ';border:2.5px solid #fff;box-shadow:0 0 0 1px rgba(138,109,66,.55),0 2px 6px rgba(40,30,10,.45)"></div>',
+      iconSize: [14, 14], iconAnchor: [7, 7]
     });
     var m = L.marker([t.lat, t.lng], { icon: icon }).addTo(map);
     m.bindPopup("<b>" + esc(t.place) + "</b>" +

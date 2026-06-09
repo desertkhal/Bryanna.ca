@@ -197,11 +197,41 @@ section.wing { padding: 56px 0 72px; }
 
 /* ---------- travel ---------- */
 #map {
-  height: 320px; width: 100%; border-radius: 8px; overflow: hidden;
+  position: relative;
+  height: 340px; width: 100%; border-radius: 10px; overflow: hidden;
   border: 1px solid var(--line); box-shadow: var(--shadow); margin-bottom: 36px;
-  background: var(--paper-2); z-index: 1;
+  background: #ece3d4; z-index: 1;
 }
-@media (min-width: 720px) { #map { height: 440px; } }
+@media (min-width: 720px) { #map { height: 460px; } }
+
+/* warm, aged-paper tint so the map reads as a museum artifact, not a plugin
+   (only the map tiles are tinted; the brass markers stay crisp on top) */
+#map .leaflet-tile-pane { filter: sepia(0.42) saturate(0.92) brightness(1.05) contrast(0.92); }
+
+/* soft inner frame + vignette, like a framed exhibit */
+#map::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 450;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgba(168,137,90,0.30), inset 0 0 70px rgba(80,58,28,0.14);
+}
+
+/* zoom control, restyled to the museum palette */
+.leaflet-control-zoom { border: 0 !important; box-shadow: var(--shadow) !important; }
+.leaflet-control-zoom a {
+  background: var(--card) !important; color: var(--brass-deep) !important;
+  border: 1px solid var(--line) !important; width: 32px !important; height: 32px !important;
+  line-height: 30px !important; font-size: 17px !important;
+}
+.leaflet-control-zoom a:hover { background: var(--paper-2) !important; }
+.leaflet-bar a:first-child { border-radius: 8px 8px 0 0 !important; }
+.leaflet-bar a:last-child { border-radius: 0 0 8px 8px !important; }
+
+/* quiet the attribution into a discreet credit line */
+.leaflet-control-attribution {
+  background: rgba(250,248,243,0.66) !important; font-size: 10px !important;
+  color: var(--ink-soft) !important; padding: 1px 6px !important;
+}
+.leaflet-control-attribution a { color: var(--brass-deep) !important; }
 
 .trips { display: grid; gap: 26px; }
 @media (min-width: 720px) { .trips { grid-template-columns: 1fr 1fr; } }
@@ -216,8 +246,9 @@ section.wing { padding: 56px 0 72px; }
 .trip .when { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
   color: var(--brass-deep); margin: 2px 0 8px; }
 .trip .story { color: var(--ink-soft); margin: 0; font-size: .96rem; }
-.leaflet-popup-content { font-family: var(--sans); }
-.leaflet-popup-content b { font-family: var(--serif); font-size: 1.05rem; }
+.leaflet-popup-content-wrapper { border-radius: 9px; box-shadow: var(--shadow); }
+.leaflet-popup-content { font-family: var(--sans); margin: 12px 15px; }
+.leaflet-popup-content b { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); }
 
 /* ---------- cuisine / menus ---------- */
 .menu {
