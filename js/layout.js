@@ -72,4 +72,17 @@
     if (img.complete) img.classList.add("loaded");
     else img.addEventListener("load", function () { img.classList.add("loaded"); });
   });
+
+  // animated transition when leaving via the "next wing" button
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var nwLink = document.querySelector(".next-wing");
+  if (nwLink) {
+    nwLink.addEventListener("click", function (e) {
+      if (reduce || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      var href = nwLink.getAttribute("href");
+      document.body.classList.add("is-leaving");
+      setTimeout(function () { window.location.href = href; }, 280);
+    });
+  }
 })();
