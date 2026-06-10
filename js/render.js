@@ -59,18 +59,24 @@
       c.outerHTML = '<div class="placeholder">The kitchen is warming up.</div>';
     } else {
       c.innerHTML = M.map(function (m) {
-        var courses = (m.courses || []).map(function (co) {
-          return '<div class="course">' +
-            (co.kind ? '<div class="ckind">' + esc(co.kind) + "</div>" : "") +
-            '<div class="cname">' + esc(co.name) + "</div>" +
-            (co.history ? '<p class="chist">' + esc(co.history) + "</p>" : "") +
-            "</div>";
-        }).join("");
+        var courses = (m.courses && m.courses.length)
+          ? '<div class="mcourses">' + m.courses.map(function (co) {
+              return '<div class="mcourse">' + esc(co) + "</div>";
+            }).join("") + "</div>"
+          : "";
+        var photos = (m.photos && m.photos.length)
+          ? '<div class="mphotos">' + m.photos.map(function (f) {
+              return '<a class="zoomable" href="images/cuisine/' + esc(f) + '">' +
+                img("images/cuisine/" + f, "") + "</a>";
+            }).join("") + "</div>"
+          : "";
         return '<article class="menu"><div class="mhead">' +
           (m.occasion ? '<div class="occasion">' + esc(m.occasion) + "</div>" : "") +
           '<div class="mtitle">' + esc(m.title) + "</div>" +
           (m.date ? '<div class="mdate">' + esc(m.date) + "</div>" : "") +
-          "</div>" + courses + "</article>";
+          "</div>" +
+          (m.story ? '<p class="mstory">' + esc(m.story) + "</p>" : "") +
+          courses + photos + "</article>";
       }).join("");
     }
   }

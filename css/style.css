@@ -293,14 +293,15 @@ body[data-page="voyage"] .wing-head { margin-bottom: 24px; }
 .menu .mhead .occasion { font-size: .74rem; letter-spacing: .2em;
   text-transform: uppercase; color: var(--brass-deep); }
 .menu .mhead .mtitle { font-family: var(--serif); font-size: 1.8rem; margin: 4px 0 2px; }
-.menu .mhead .mdate { font-size: .85rem; color: var(--ink-soft); }
-.course { padding: 14px 0; border-bottom: 1px dotted var(--line); }
-.course:last-child { border-bottom: 0; }
-.course .cname { font-family: var(--serif); font-size: 1.25rem; }
-.course .ckind { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--brass-deep); }
-.course .chist { font-size: .92rem; color: var(--ink-soft); margin: 6px 0 0;
-  font-style: italic; }
+.menu .mhead .mdate { font-size: .85rem; color: var(--ink-soft); letter-spacing: .04em; }
+.menu .mstory { color: var(--ink-soft); font-size: 1rem; line-height: 1.7;
+  text-align: center; margin: 0 auto 22px; max-width: 52ch; }
+.menu .mcourses { text-align: center; border-top: 1px solid var(--line); padding-top: 18px; }
+.menu .mcourse { font-family: var(--serif); font-size: 1.2rem; padding: 5px 0; color: var(--ink); }
+.menu .mphotos { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+.menu .mphotos a { display: block; border-radius: 6px; overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow); cursor: zoom-in; }
+.menu .mphotos img { width: 100%; height: auto; display: block; }
 
 /* ---------- guestbook ---------- */
 .gb-form {
