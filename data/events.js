@@ -49,6 +49,12 @@ window.EVENTS = [
     photo: "images/collection/collection-9.jpg"
   },
   {
+    date: "February 2026",
+    title: "Her People",
+    desc: "A lovely dinner at Lansdowne, and the evening he met her friends for the first time. The mirror image of New Year's Eve, and every bit as nerve-racking. By all reports, he passed.",
+    photo: "images/collection/collection-20.jpg"
+  },
+  {
     date: "Valentine's Day 2026",
     title: "Be Mine, Officially",
     desc: "Their first Valentine's Day, and the day he asked her to be his girlfriend, officially. A card felt insufficient, so he built her an entire interactive app to pop the question, one where the \"No\" button quietly dodged her cursor every time she reached for it. She was, in fairness, left with only one option. She took it gladly.",

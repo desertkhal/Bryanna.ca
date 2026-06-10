@@ -65,7 +65,7 @@
             }).join("") + "</div>"
           : "";
         var photos = (m.photos && m.photos.length)
-          ? '<div class="mphotos">' + m.photos.map(function (f) {
+          ? '<div class="mphotos' + (m.photos.length === 2 ? " pair" : "") + '">' + m.photos.map(function (f) {
               return '<a class="zoomable" href="images/cuisine/' + esc(f) + '">' +
                 img("images/cuisine/" + f, "") + "</a>";
             }).join("") + "</div>"
