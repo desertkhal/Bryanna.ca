@@ -2,12 +2,12 @@
    Keeps navigation in ONE place so adding/renaming wings is a single edit. */
 (function () {
   var WINGS = [
-    { id: "home",       label: "Entrance",  href: "index.html" },
-    { id: "portraits",  label: "Portraits", href: "portraits.html" },
-    { id: "collection", label: "Collection",href: "collection.html" },
-    { id: "voyage",     label: "Travel",    href: "voyage.html" },
-    { id: "cuisine",    label: "Cuisine",   href: "cuisine.html" },
-    { id: "guestbook",  label: "Guestbook", href: "guestbook.html" }
+    { id: "home",       label: "Entrance",  href: "index.html",      full: "the Entrance" },
+    { id: "portraits",  label: "Portraits", href: "portraits.html",  full: "the Portrait Gallery" },
+    { id: "collection", label: "Collection",href: "collection.html", full: "the Collection" },
+    { id: "voyage",     label: "Travel",    href: "voyage.html",     full: "the Travel Wing" },
+    { id: "cuisine",    label: "Cuisine",   href: "cuisine.html",    full: "the Culinary Archive" },
+    { id: "guestbook",  label: "Guestbook", href: "guestbook.html",  full: "the Guestbook" }
   ];
 
   var current = document.body.getAttribute("data-page") || "home";
@@ -36,11 +36,26 @@
       '<div class="small">Admission: Free &middot; Closing Date: Never</div>' +
     '</footer>';
 
+  // a subtle "next wing" link at the foot of every wing (not the entrance)
+  var nextNav = "";
+  var idx = -1;
+  for (var k = 0; k < WINGS.length; k++) { if (WINGS[k].id === current) idx = k; }
+  if (current !== "home" && idx !== -1) {
+    var nxt = WINGS[(idx + 1) % WINGS.length];
+    var verb = nxt.id === "home" ? "Return to" : "Continue to";
+    nextNav =
+      '<div class="next-wing-wrap"><a class="next-wing" href="' + nxt.href + '">' +
+        '<span class="nw-label">' + verb + '</span>' +
+        '<span class="nw-name">' + nxt.full + '</span>' +
+        '<span class="nw-arrow" aria-hidden="true">→</span>' +
+      '</a></div>';
+  }
+
   // inject
   var top = document.getElementById("masthead");
   if (top) top.outerHTML = masthead;
   var bottom = document.getElementById("footer");
-  if (bottom) bottom.outerHTML = footer;
+  if (bottom) bottom.outerHTML = nextNav + footer;
 
   // mobile toggle (re-query because we replaced the node)
   var btn = document.querySelector(".nav-toggle");
