@@ -13,6 +13,18 @@ window.PORTRAITS = [
     desc: "Caught in full bloom, she meets the viewer with the easy confidence of a woman who knows the dress is working."
   },
   {
+    file: "portrait-19.jpg",
+    title: "What the Sea Said",
+    meta: "Shell, acquired",
+    desc: "She loved the shell her gooseberries were served in, so he quietly took it from the restaurant and gave it to her. Here she holds it to her ear to listen. Of all the pieces in this collection, the curator returns to this one most. He cannot say exactly why, and has stopped trying to."
+  },
+  {
+    file: "portrait-4.jpg",
+    title: "Storm Front",
+    meta: "Portrait",
+    desc: "An unbothered pose against a backdrop of frankly indeterminate weather. The Museum finds it entirely characteristic."
+  },
+  {
     file: "portrait-20.jpg",
     title: "Feyd-Rautha",
     meta: "A scientific comparison",
@@ -23,12 +35,6 @@ window.PORTRAITS = [
     title: "Blade in Hand",
     meta: "With Manvir's katana",
     desc: "Armed with a borrowed katana, the property of one Manvir. She is on record as having briefly considered using it on Elijah, then thinking better of it. Probably."
-  },
-  {
-    file: "portrait-19.jpg",
-    title: "What the Sea Said",
-    meta: "Shell, acquired",
-    desc: "She loved the shell her gooseberries were served in, so he quietly took it from the restaurant and gave it to her. Here she holds it to her ear to listen. Of all the pieces in this collection, the curator returns to this one most. He cannot say exactly why, and has stopped trying to."
   },
   {
     file: "portrait-7.jpg",
@@ -107,12 +113,6 @@ window.PORTRAITS = [
     title: "Triptych",
     meta: "Multiple exposures",
     desc: "Several views of the subject from a single sitting, each one admitted to the permanent collection without debate."
-  },
-  {
-    file: "portrait-4.jpg",
-    title: "Storm Front",
-    meta: "Portrait",
-    desc: "An unbothered pose against a backdrop of frankly indeterminate weather. The Museum finds it entirely characteristic."
   },
   {
     file: "portrait-8.jpg",
