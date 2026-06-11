@@ -13,16 +13,34 @@ window.PORTRAITS = [
     desc: "Caught in full bloom, she meets the viewer with the easy confidence of a woman who knows the dress is working."
   },
   {
+    file: "portrait-20.jpg",
+    title: "Feyd-Rautha",
+    meta: "A scientific comparison",
+    desc: "Laid low by a cold in Berlin and armed with both medication and whitening strips, she achieved an uncanny likeness to a certain pale antagonist of the Dune saga. The resemblance is presented here without comment. She remains, the Museum stresses, significantly more beautiful."
+  },
+  {
     file: "portrait-9.jpg",
     title: "Blade in Hand",
     meta: "With Manvir's katana",
     desc: "Armed with a borrowed katana, the property of one Manvir. She is on record as having briefly considered using it on Elijah, then thinking better of it. Probably."
   },
   {
+    file: "portrait-19.jpg",
+    title: "What the Sea Said",
+    meta: "Shell, acquired",
+    desc: "She loved the shell her gooseberries were served in, so he quietly took it from the restaurant and gave it to her. Here she holds it to her ear to listen. Of all the pieces in this collection, the curator returns to this one most. He cannot say exactly why, and has stopped trying to."
+  },
+  {
     file: "portrait-7.jpg",
     title: "Separated at Birth",
     meta: "Sculpture, encountered",
     desc: "Found at the gallery beside a monumental rendering of her long-lost twin. The resemblance is uncanny and, by several accounts, the temperament identical."
+  },
+  {
+    file: "portrait-18.jpg",
+    title: "Live from Amsterdam",
+    meta: "Windswept, mid-ballad",
+    desc: "Captured mid-performance on a blustery Amsterdam street, she delivers an unsolicited and fully committed rendition of the emo canon. Witnesses confirm the words \"tonight will be the night that I will fall for you\" carried clean across the canal. The hair, like the feeling, was beyond her control. A landmark of the form."
   },
   {
     file: "portrait-1.jpg",
@@ -82,19 +100,19 @@ window.PORTRAITS = [
     file: "portrait-14.jpg",
     title: "Painting the Town",
     meta: "On the town",
-    desc: "A night out, kept in black and white because some evenings simply demand it."
+    desc: "A night out, preserved in black and white because some evenings simply demand it."
   },
   {
     file: "portrait-11.jpg",
     title: "Triptych",
     meta: "Multiple exposures",
-    desc: "Several views from a single sitting, every one admitted to the permanent collection without debate."
+    desc: "Several views of the subject from a single sitting, each one admitted to the permanent collection without debate."
   },
   {
     file: "portrait-4.jpg",
     title: "Storm Front",
     meta: "Portrait",
-    desc: "An unbothered pose against a backdrop of frankly indeterminate weather. Entirely characteristic."
+    desc: "An unbothered pose against a backdrop of frankly indeterminate weather. The Museum finds it entirely characteristic."
   },
   {
     file: "portrait-8.jpg",
