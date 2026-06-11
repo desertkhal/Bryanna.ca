@@ -51,7 +51,7 @@ window.EVENTS = [
   {
     date: "February 2026",
     title: "Her People",
-    desc: "A lovely dinner at Lansdowne, and the evening he met her friends for the first time. The mirror image of New Year's Eve, and every bit as nerve-racking. By all reports, he passed.",
+    desc: "A lovely dinner at Lansdowne, and the night he met her friends for the first time. He arrived outnumbered and on his best behaviour, well aware that this was the table that mattered most. It went well. He left with a few new people firmly in his corner.",
     photo: "images/collection/collection-20.jpg"
   },
   {
